@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8B92A9A3-1B66-4A5D-8D68-7E28F7C13992}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoldGymMemberCommandHandler</RootNamespace>
+    <AssemblyName>GoldGymMemberCommandHandler</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.MicroKernel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.MicroKernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor, Version=2.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Queues, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Rhino.Queues.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.ServiceBus, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Rhino.ServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckGoldMemberStatus.cs" />
+    <Compile Include="Configuration\BootStrapper.cs" />
+    <Compile Include="CorrectTrainingLevel.cs" />
+    <Compile Include="CreateNewMember.cs" />
+    <Compile Include="DowngradeTrainingLevel.cs" />
+    <Compile Include="EnterTrainingRegistration.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpgradeTrainingLevel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoldGymMemberDomain\GoldGymMemberDomain.csproj">
+      <Project>{6B44258F-01FA-4EB4-A9AC-D77683F60845}</Project>
+      <Name>GoldGymMemberDomain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GymGoldMemberCommands\GymGoldMemberCommands.csproj">
+      <Project>{BADB19B6-7538-4465-A448-F38AFB8656E1}</Project>
+      <Name>GymGoldMemberCommands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GymGoldMemberEvents\GymGoldMemberEvents.csproj">
+      <Project>{95E5A662-8EED-4640-8C30-DC7BCE7A1AD2}</Project>
+      <Name>GymGoldMemberEvents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GymGoldMemberRepositories\GymGoldMemberRepositories.csproj">
+      <Project>{56A67395-0402-4492-A155-56BF6EF89A91}</Project>
+      <Name>GymGoldMemberRepositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Bus\Bus.csproj">
+      <Project>{5A659281-1636-4D8C-AE81-50FB25EABB38}</Project>
+      <Name>Bus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Eventing\Eventing.csproj">
+      <Project>{C4DCF812-DAE9-401B-8500-26D2CFF0C101}</Project>
+      <Name>Eventing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\EventStoreSQL\EventStoreSQL.csproj">
+      <Project>{CB911B2C-F3C9-45CB-B24C-DDC29ED940FB}</Project>
+      <Name>EventStoreSQL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

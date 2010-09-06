@@ -1,0 +1,66 @@
+﻿GO
+/****** Object:  Table [dbo].[snapshotstore]    Script Date: 08/20/2010 08:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[snapshotstore](
+	[AggregateId] [uniqueidentifier] NOT NULL,
+	[SequenceNo] [int] NOT NULL,
+	[MementoVersion] [int] NOT NULL,
+	[Data] [text] NOT NULL,
+ CONSTRAINT [PK_snapshotstore] PRIMARY KEY CLUSTERED 
+(
+	[AggregateId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[eventstore]    Script Date: 08/20/2010 08:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING OFF
+GO
+CREATE TABLE [dbo].[eventstore](
+	[AggregateId] [uniqueidentifier] NOT NULL,
+	[serializer] [varchar](50) NOT NULL,
+	[Data] [text] NOT NULL,
+	[SequenceNo] [int] NOT NULL,
+	[EventTypeName] [varchar](255) NOT NULL,
+	[ParentCommandId] [int] NOT NULL,
+	[AutoInc] [int] IDENTITY(1,1) NOT NULL,
+ CONSTRAINT [PK_eventstore] PRIMARY KEY CLUSTERED 
+(
+	[AggregateId] ASC,
+	[SequenceNo] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [ai1] ON [dbo].[eventstore] 
+(
+	[AutoInc] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aggregatestore]    Script Date: 08/20/2010 08:52:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[aggregatestore](
+	[AggregateId] [uniqueidentifier] NOT NULL,
+	[LatestSequenceNo] [int] NOT NULL,
+	[AggregateTypeName] [varchar](255) NOT NULL,
+ CONSTRAINT [PK_aggregatestore] PRIMARY KEY CLUSTERED 
+(
+	[AggregateId] ASC,
+	[LatestSequenceNo] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
